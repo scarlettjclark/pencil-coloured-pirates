@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bani42rnh3ms5"]
+
+[ext_resource type="PackedScene" uid="uid://bv7uvmqrlif1o" path="res://voyage_phase_ui.tscn" id="1_nt7nw"]
+[ext_resource type="Script" uid="uid://lhixwoexm0ei" path="res://goods_manager.gd" id="1_sb12a"]
+[ext_resource type="Script" uid="uid://cojf1q451fjsc" path="res://goods.gd" id="3_aefom"]
+
+[node name="PrototypeVoyagePhase" type="Node"]
+
+[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display")]
+script = ExtResource("1_sb12a")
+store = NodePath("Store")
+display = NodePath("Voyage Phase UI")
+
+[node name="Voyage Phase UI" parent="GoodsManager" instance=ExtResource("1_nt7nw")]
+
+[node name="Store" type="Node" parent="GoodsManager"]
+script = ExtResource("3_aefom")
+crew = 1
+munitions = 2
+supplies = 3
+booze = 4
+cloth = 5
+spices = 6
+gold = 7
+notoriety = 8
