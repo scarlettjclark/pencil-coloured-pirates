@@ -23,3 +23,5 @@ cloth = 5
 spices = 6
 gold = 7
 notoriety = 8
+
+[connection signal="enable_request" from="GoodsManager/Voyage Phase UI" to="GoodsManager" method="_on_voyage_phase_ui_enable_request"]

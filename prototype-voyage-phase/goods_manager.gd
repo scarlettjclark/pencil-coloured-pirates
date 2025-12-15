@@ -7,3 +7,7 @@ extends Node
 
 func _ready():
 	display.display_goods(store)
+
+
+func _on_voyage_phase_ui_enable_request(cost, job):
+	print("Enable Request Received")

@@ -14,6 +14,8 @@ extends Control
 @onready var gold_label = $"Goods/Gold Label"
 @onready var notoriety_label = $"Goods/Notoriety Label"
 
+signal enable_request(cost : Goods, job : JobButton)
+
 func display_goods(goods : Goods):
 	crew_label.set_value(goods.crew)
 	munitions_label.set_value(goods.munitions)
@@ -23,4 +25,7 @@ func display_goods(goods : Goods):
 	spices_label.set_value(goods.spices)
 	gold_label.set_value(goods.gold)
 	notoriety_label.set_value(goods.notoriety)
-	
+
+
+func _on_button_enable_request(cost, job):
+	enable_request.emit(cost,job)
