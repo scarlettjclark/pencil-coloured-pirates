@@ -7,11 +7,11 @@
 
 [node name="PrototypeVoyagePhase" type="Node"]
 
-[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display", "job_to_display")]
+[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display", "jobs_to_display")]
 script = ExtResource("1_53o7g")
 store = NodePath("Store")
 display = NodePath("Voyage Phase UI")
-job_to_display = NodePath("Job")
+jobs_to_display = [NodePath("Job"), NodePath("Job2")]
 
 [node name="Voyage Phase UI" parent="GoodsManager" instance=ExtResource("2_eixya")]
 
@@ -39,6 +39,22 @@ metadata/_custom_type_script = "uid://cojf1q451fjsc"
 [node name="Result" type="Node" parent="GoodsManager/Job"]
 script = ExtResource("3_0ew33")
 cloth = 4
+metadata/_custom_type_script = "uid://cojf1q451fjsc"
+
+[node name="Job2" type="Node" parent="GoodsManager" node_paths=PackedStringArray("cost", "result")]
+script = ExtResource("4_eixya")
+cost = NodePath("Cost")
+result = NodePath("Result")
+metadata/_custom_type_script = "uid://day7tlj0ot3cj"
+
+[node name="Cost" type="Node" parent="GoodsManager/Job2"]
+script = ExtResource("3_0ew33")
+munitions = 2
+metadata/_custom_type_script = "uid://cojf1q451fjsc"
+
+[node name="Result" type="Node" parent="GoodsManager/Job2"]
+script = ExtResource("3_0ew33")
+booze = 4
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [connection signal="enable_request" from="GoodsManager/Voyage Phase UI" to="GoodsManager" method="_on_voyage_phase_ui_enable_request"]

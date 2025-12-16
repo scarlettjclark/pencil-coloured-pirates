@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cuxf146gdxxtl" path="res://Scripts/voyage_phase_ui.gd" id="1_0gu06"]
 [ext_resource type="Script" uid="uid://dfocy35sxon1k" path="res://Scripts/text_goods_label.gd" id="2_yvkpm"]
 
-[node name="Voyage Phase UI" type="Control"]
+[node name="Voyage Phase UI" type="Control" node_paths=PackedStringArray("containers")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0gu06")
+containers = [NodePath("Jobs/AspectRatioContainer"), NodePath("Jobs/AspectRatioContainer2"), NodePath("Jobs/AspectRatioContainer3"), NodePath("Jobs/AspectRatioContainer4"), NodePath("Jobs/AspectRatioContainer5"), NodePath("Jobs/AspectRatioContainer6")]
 
 [node name="Jobs" type="GridContainer" parent="."]
 layout_mode = 1
