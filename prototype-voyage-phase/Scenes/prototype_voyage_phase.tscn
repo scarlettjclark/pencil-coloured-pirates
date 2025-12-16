@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bani42rnh3ms5"]
+
+[ext_resource type="Script" uid="uid://lhixwoexm0ei" path="res://Scripts/goods_manager.gd" id="1_53o7g"]
+[ext_resource type="PackedScene" uid="uid://bv7uvmqrlif1o" path="res://Scenes/voyage_phase_ui.tscn" id="2_eixya"]
+[ext_resource type="Script" uid="uid://cojf1q451fjsc" path="res://Scripts/goods.gd" id="3_0ew33"]
+[ext_resource type="Script" uid="uid://day7tlj0ot3cj" path="res://Scripts/job.gd" id="4_eixya"]
+
+[node name="PrototypeVoyagePhase" type="Node"]
+
+[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display")]
+script = ExtResource("1_53o7g")
+store = NodePath("Store")
+display = NodePath("Voyage Phase UI")
+
+[node name="Voyage Phase UI" parent="GoodsManager" instance=ExtResource("2_eixya")]
+
+[node name="Store" type="Node" parent="GoodsManager"]
+script = ExtResource("3_0ew33")
+crew = 1
+munitions = 2
+supplies = 3
+booze = 4
+cloth = 5
+spices = 6
+gold = 7
+notoriety = 8
+
+[node name="Job" type="Node" parent="GoodsManager"]
+script = ExtResource("4_eixya")
+
+[node name="Cost" type="Node" parent="GoodsManager/Job"]
+script = ExtResource("3_0ew33")
+crew = 1
+metadata/_custom_type_script = "uid://cojf1q451fjsc"
+
+[node name="Result" type="Node" parent="GoodsManager/Job"]
+script = ExtResource("3_0ew33")
+cloth = 4
+metadata/_custom_type_script = "uid://cojf1q451fjsc"
+
+[connection signal="enable_request" from="GoodsManager/Voyage Phase UI" to="GoodsManager" method="_on_voyage_phase_ui_enable_request"]
+[connection signal="run_jobs" from="GoodsManager/Voyage Phase UI" to="GoodsManager" method="_on_voyage_phase_ui_run_jobs"]

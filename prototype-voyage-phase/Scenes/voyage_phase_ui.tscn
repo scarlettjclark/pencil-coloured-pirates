@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv7uvmqrlif1o"]
+[gd_scene load_steps=6 format=3 uid="uid://bv7uvmqrlif1o"]
 
-[ext_resource type="Script" uid="uid://cuxf146gdxxtl" path="res://voyage_phase_ui.gd" id="1_0gu06"]
-[ext_resource type="Script" uid="uid://bmvrx26l1jd8" path="res://job_button.gd" id="2_8px1e"]
-[ext_resource type="Script" uid="uid://dfocy35sxon1k" path="res://text_goods_label.gd" id="2_yvkpm"]
-[ext_resource type="Script" uid="uid://cojf1q451fjsc" path="res://goods.gd" id="3_lykjh"]
+[ext_resource type="Script" uid="uid://cuxf146gdxxtl" path="res://Scripts/voyage_phase_ui.gd" id="1_0gu06"]
+[ext_resource type="Script" uid="uid://bmvrx26l1jd8" path="res://Scripts/job_button.gd" id="2_8px1e"]
+[ext_resource type="Script" uid="uid://dfocy35sxon1k" path="res://Scripts/text_goods_label.gd" id="2_yvkpm"]
+[ext_resource type="Script" uid="uid://cojf1q451fjsc" path="res://Scripts/goods.gd" id="3_lykjh"]
+[ext_resource type="Script" uid="uid://day7tlj0ot3cj" path="res://Scripts/job.gd" id="3_o3t7t"]
 
 [node name="Voyage Phase UI" type="Control"]
 layout_mode = 3
@@ -33,21 +34,32 @@ size_flags_vertical = 3
 ratio = 3.8438
 stretch_mode = 0
 
-[node name="Button" type="Button" parent="Jobs/AspectRatioContainer" node_paths=PackedStringArray("cost", "result")]
+[node name="Button" type="Button" parent="Jobs/AspectRatioContainer" node_paths=PackedStringArray("job")]
 layout_mode = 2
 text = "This is a job for your voyage"
 script = ExtResource("2_8px1e")
+job = NodePath("Job")
+
+[node name="Job" type="Node" parent="Jobs/AspectRatioContainer/Button" node_paths=PackedStringArray("cost", "result")]
+script = ExtResource("3_o3t7t")
 cost = NodePath("Cost")
 result = NodePath("Result")
+metadata/_custom_type_script = "uid://day7tlj0ot3cj"
 
-[node name="Cost" type="Node" parent="Jobs/AspectRatioContainer/Button"]
+[node name="Cost" type="Node" parent="Jobs/AspectRatioContainer/Button/Job"]
 script = ExtResource("3_lykjh")
 crew = 1
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
-[node name="Result" type="Node" parent="Jobs/AspectRatioContainer/Button"]
+[node name="Result" type="Node" parent="Jobs/AspectRatioContainer/Button/Job"]
 script = ExtResource("3_lykjh")
-cloth = 4
+munitions = 1
+supplies = 1
+booze = 1
+cloth = 1
+spices = 1
+gold = 1
+notoriety = 1
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Jobs"]

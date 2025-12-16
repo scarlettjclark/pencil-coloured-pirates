@@ -27,7 +27,6 @@ func display_goods(goods : Goods):
 	gold_label.set_value(goods.gold)
 	notoriety_label.set_value(goods.notoriety)
 
-
 func _on_button_enable_request(job):
 	enable_request.emit(job)
 
