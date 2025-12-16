@@ -20,6 +20,7 @@ func _on_voyage_phase_ui_enable_request(job_button : JobButton):
 	print("Current load: " + str(current_load))
 	print("Job to add: " + str(job.cost))
 	if store.has_room_for_more(current_load, job.cost) and not (job in jobs_to_run):
+		print("Job added")
 		current_load.add(job.cost)
 		jobs_to_run.append(job)
 		job_button.set_running()
@@ -29,5 +30,6 @@ func _on_voyage_phase_ui_run_jobs():
 		store.spend(job.cost)
 		store.add(job.result)
 	jobs_to_run.clear()
+	current_load = Goods.new()
 	display.display_goods(store)
 	display.disable_jobs()

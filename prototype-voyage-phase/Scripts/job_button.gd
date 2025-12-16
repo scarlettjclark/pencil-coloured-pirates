@@ -3,6 +3,7 @@ class_name JobButton
 extends Button
 
 @export var job : Job
+var running := false
 signal enable_request(job_button : JobButton)
 
 func _init(the_job : Job):
@@ -14,8 +15,11 @@ func _on_pressed() -> void:
 	enable_request.emit(self)
 
 func set_running() -> void:
-	text += " RUNNING"
+	if not running:
+		text += " RUNNING"
+		running = true
 
 func set_not_running() -> void:
-	text = text.substr(0, text.length() - 7)
-		
+	if running:
+		text = text.substr(0, text.length() - 7)
+		running = false
