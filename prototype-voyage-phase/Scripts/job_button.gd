@@ -7,7 +7,7 @@ signal enable_request(job_button : JobButton)
 
 func _init(the_job : Job):
 	job = the_job
-	text = "This is a job"
+	text = job.to_shorthand_label()
 	pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
@@ -17,4 +17,5 @@ func set_running() -> void:
 	text += " RUNNING"
 
 func set_not_running() -> void:
-	text = text.substr(0, "This is a job".length())
+	text = text.substr(0, text.length() - 7)
+		

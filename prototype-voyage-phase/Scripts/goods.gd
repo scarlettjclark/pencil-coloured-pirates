@@ -72,13 +72,9 @@ func spend(to_spend : Goods) -> void:
 		goods_dict[type] -= to_spend.goods_dict[type]
 
 func has_room_for_more(cost : Goods, current_load : Goods) -> bool:
-	print("Current store:\n" + _to_string())
-	print("Current load:\n" + str(current_load))
 	var combined = Goods.new()
 	combined.add(cost)
 	combined.add(current_load)
-	print ("Combined:\n" + str(combined))
-	print("Result: " + str(has_cost(combined)))
 	return has_cost(combined)
 
 func _to_string() -> String:
@@ -87,4 +83,15 @@ func _to_string() -> String:
 		if goods_dict[type] != 0:
 			string += type + ": " + str(goods_dict[type]) + "\n"
 	return string
+	
+func to_shorthand_label() -> String:
+	var string := ""
+	for type in goods_dict.keys():
+		if goods_dict[type] != 0:
+			var initial = type[0]
+			if type == "Crew" or type == "Munitions" or type == "Supplies":
+				initial = initial.to_lower()
+			string += initial + str(goods_dict[type]) + " "
+		
+	return string.substr(0, string.length() - 1)
 	
