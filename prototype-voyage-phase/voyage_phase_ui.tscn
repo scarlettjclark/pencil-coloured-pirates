@@ -33,17 +33,21 @@ size_flags_vertical = 3
 ratio = 3.8438
 stretch_mode = 0
 
-[node name="Button" type="Button" parent="Jobs/AspectRatioContainer"]
+[node name="Button" type="Button" parent="Jobs/AspectRatioContainer" node_paths=PackedStringArray("cost", "result")]
 layout_mode = 2
 text = "This is a job for your voyage"
 script = ExtResource("2_8px1e")
+cost = NodePath("Cost")
+result = NodePath("Result")
 
 [node name="Cost" type="Node" parent="Jobs/AspectRatioContainer/Button"]
 script = ExtResource("3_lykjh")
+crew = 1
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [node name="Result" type="Node" parent="Jobs/AspectRatioContainer/Button"]
 script = ExtResource("3_lykjh")
+cloth = 4
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Jobs"]
@@ -180,7 +184,7 @@ horizontal_alignment = 1
 script = ExtResource("2_yvkpm")
 initial = "N"
 
-[node name="Button" type="Button" parent="."]
+[node name="VoyageButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35
@@ -193,3 +197,4 @@ text = "Voyage!"
 
 [connection signal="enable_request" from="Jobs/AspectRatioContainer/Button" to="." method="_on_button_enable_request"]
 [connection signal="pressed" from="Jobs/AspectRatioContainer/Button" to="Jobs/AspectRatioContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="VoyageButton" to="." method="_on_voyage_button_pressed"]

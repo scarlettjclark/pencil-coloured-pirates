@@ -5,7 +5,10 @@ extends Button
 @export var cost : Goods
 @export var result : Goods
 
-signal enable_request(cost : Goods, job : JobButton)
+signal enable_request(job : JobButton)
 
 func _on_pressed():
-	enable_request.emit(cost, self)
+	enable_request.emit(self)
+
+func will_run():
+	text += " ENABLED"

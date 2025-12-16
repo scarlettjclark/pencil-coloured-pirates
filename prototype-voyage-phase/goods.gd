@@ -25,3 +25,23 @@ func has_cost(cost : Goods) -> bool:
 			spices >= cost.spices and
 			gold >= cost.gold and 
 			notoriety >= cost.notoriety)
+
+func add(to_add : Goods) -> void:
+	crew += to_add.crew
+	munitions += to_add.munitions
+	supplies += to_add.supplies
+	booze += to_add.supplies
+	cloth += to_add.cloth
+	spices += to_add.spices
+	gold += to_add.gold
+	notoriety += to_add.notoriety
+
+func spend(to_spend : Goods) -> void:
+	crew -= to_spend.crew
+	munitions -= to_spend.munitions
+	supplies -= to_spend.supplies
+	booze -= to_spend.booze
+	cloth -= to_spend.cloth
+	spices -= to_spend.spices
+	gold -= to_spend.gold
+	notoriety -= to_spend.notoriety
