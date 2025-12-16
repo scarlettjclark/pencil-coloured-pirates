@@ -17,14 +17,7 @@ jobs_to_display = [NodePath("Job"), NodePath("Job2")]
 
 [node name="Store" type="Node" parent="GoodsManager"]
 script = ExtResource("3_0ew33")
-crew = 1
-munitions = 2
-supplies = 3
-booze = 4
-cloth = 5
-spices = 6
-gold = 7
-notoriety = 8
+crew = 3
 
 [node name="Job" type="Node" parent="GoodsManager" node_paths=PackedStringArray("cost", "result")]
 script = ExtResource("4_eixya")
@@ -33,7 +26,7 @@ result = NodePath("Result")
 
 [node name="Cost" type="Node" parent="GoodsManager/Job"]
 script = ExtResource("3_0ew33")
-crew = 1
+crew = 2
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [node name="Result" type="Node" parent="GoodsManager/Job"]
@@ -49,12 +42,13 @@ metadata/_custom_type_script = "uid://day7tlj0ot3cj"
 
 [node name="Cost" type="Node" parent="GoodsManager/Job2"]
 script = ExtResource("3_0ew33")
-munitions = 2
+crew = 2
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [node name="Result" type="Node" parent="GoodsManager/Job2"]
 script = ExtResource("3_0ew33")
-booze = 4
+crew = 2
+cloth = 1
 metadata/_custom_type_script = "uid://cojf1q451fjsc"
 
 [connection signal="enable_request" from="GoodsManager/Voyage Phase UI" to="GoodsManager" method="_on_voyage_phase_ui_enable_request"]

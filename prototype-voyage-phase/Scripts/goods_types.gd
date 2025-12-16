@@ -1,0 +1,11 @@
+class_name GoodsTypes
+enum{
+	CREW,
+	MUNITIONS,
+	SUPPLIES,
+	BOOZE,
+	CLOTH,
+	SPICES,
+	GOLD,
+	NOTORIETY
+}

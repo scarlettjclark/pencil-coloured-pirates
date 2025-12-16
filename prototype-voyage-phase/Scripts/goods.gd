@@ -5,43 +5,86 @@ class_name Goods
 
 extends Node
 
-@export var crew : int
-@export var munitions : int
-@export var supplies : int
-@export var booze : int
-@export var cloth : int
-@export var spices : int
-@export var gold : int
-@export var notoriety : int
+var goods_dict := {"Crew" : 0, 
+					"Munitions" : 0, 
+					"Supplies" : 0,
+					"Booze" : 0,
+					"Cloth" : 0,
+					"Spices" : 0,
+					"Gold" : 0,
+					"Notoriety" : 0}
+
+@export var crew : int:
+	get:
+		return goods_dict["Crew"]
+	set(the_crew):
+		goods_dict["Crew"] = the_crew
+@export var munitions : int:
+	get:
+		return goods_dict["Munitions"]
+	set(the_munitions):
+		goods_dict["Munitions"] = the_munitions
+@export var supplies : int:
+	get:
+		return goods_dict["Supplies"]
+	set(the_supplies):
+		goods_dict["Supplies"] = the_supplies
+@export var booze : int:
+	get:
+		return goods_dict["Booze"]
+	set(the_booze):
+		goods_dict["Booze"] = the_booze
+@export var cloth : int:
+	get:
+		return goods_dict["Cloth"]
+	set(the_cloth):
+		goods_dict["Cloth"] = the_cloth
+@export var spices : int:
+	get:
+		return goods_dict["Spices"]
+	set(the_spices):
+		goods_dict["Spices"] = the_spices
+@export var gold : int:
+	get:
+		return goods_dict["Gold"]
+	set(the_gold):
+		goods_dict["Gold"] = the_gold
+@export var notoriety : int:
+	get:
+		return goods_dict["Notoriety"]
+	set(the_notoriety):
+		goods_dict["Notoriety"] = the_notoriety
 
 ## Returns whether the goods stored in this object are enough to pay for the
 ## cost of the parameter goods.
 func has_cost(cost : Goods) -> bool:
-	return (crew >= cost.crew and
-			munitions >= cost.munitions and 
-			supplies >= cost.supplies and 
-			booze >= cost.booze and 
-			cloth >= cost.cloth and 
-			spices >= cost.spices and
-			gold >= cost.gold and 
-			notoriety >= cost.notoriety)
+	var result := true
+	for type in goods_dict.keys():
+		result = result and (goods_dict[type] >= cost.goods_dict[type])
+	return result
 
 func add(to_add : Goods) -> void:
-	crew += to_add.crew
-	munitions += to_add.munitions
-	supplies += to_add.supplies
-	booze += to_add.supplies
-	cloth += to_add.cloth
-	spices += to_add.spices
-	gold += to_add.gold
-	notoriety += to_add.notoriety
+	for type in goods_dict.keys():
+		goods_dict[type] += to_add.goods_dict[type]
 
 func spend(to_spend : Goods) -> void:
-	crew -= to_spend.crew
-	munitions -= to_spend.munitions
-	supplies -= to_spend.supplies
-	booze -= to_spend.booze
-	cloth -= to_spend.cloth
-	spices -= to_spend.spices
-	gold -= to_spend.gold
-	notoriety -= to_spend.notoriety
+	for type in goods_dict.keys():
+		goods_dict[type] -= to_spend.goods_dict[type]
+
+func has_room_for_more(cost : Goods, current_load : Goods) -> bool:
+	print("Current store:\n" + _to_string())
+	print("Current load:\n" + str(current_load))
+	var combined = Goods.new()
+	combined.add(cost)
+	combined.add(current_load)
+	print ("Combined:\n" + str(combined))
+	print("Result: " + str(has_cost(combined)))
+	return has_cost(combined)
+
+func _to_string() -> String:
+	var string = ""
+	for type in goods_dict.keys():
+		if goods_dict[type] != 0:
+			string += type + ": " + str(goods_dict[type]) + "\n"
+	return string
+	
