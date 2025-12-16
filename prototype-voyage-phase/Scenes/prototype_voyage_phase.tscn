@@ -7,10 +7,11 @@
 
 [node name="PrototypeVoyagePhase" type="Node"]
 
-[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display")]
+[node name="GoodsManager" type="Node" parent="." node_paths=PackedStringArray("store", "display", "job_to_display")]
 script = ExtResource("1_53o7g")
 store = NodePath("Store")
 display = NodePath("Voyage Phase UI")
+job_to_display = NodePath("Job")
 
 [node name="Voyage Phase UI" parent="GoodsManager" instance=ExtResource("2_eixya")]
 
@@ -25,8 +26,10 @@ spices = 6
 gold = 7
 notoriety = 8
 
-[node name="Job" type="Node" parent="GoodsManager"]
+[node name="Job" type="Node" parent="GoodsManager" node_paths=PackedStringArray("cost", "result")]
 script = ExtResource("4_eixya")
+cost = NodePath("Cost")
+result = NodePath("Result")
 
 [node name="Cost" type="Node" parent="GoodsManager/Job"]
 script = ExtResource("3_0ew33")

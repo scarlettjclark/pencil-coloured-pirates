@@ -17,7 +17,7 @@ extends Control
 signal enable_request(cost : Goods, job : JobButton)
 signal run_jobs()
 
-func display_goods(goods : Goods):
+func display_goods(goods : Goods) -> void:
 	crew_label.set_value(goods.crew)
 	munitions_label.set_value(goods.munitions)
 	booze_label.set_value(goods.booze)
@@ -27,7 +27,13 @@ func display_goods(goods : Goods):
 	gold_label.set_value(goods.gold)
 	notoriety_label.set_value(goods.notoriety)
 
-func _on_button_enable_request(job):
+func display_job(job : Job) -> JobButton:
+	var aspect_ratio_container = $Jobs/AspectRatioContainer
+	var job_button = JobButton.new(job, "This is a job")
+	aspect_ratio_container.add_child(job_button)
+	return job_button
+
+func _on_button_enable_request(job) -> void:
 	enable_request.emit(job)
 
 func _on_voyage_button_pressed():

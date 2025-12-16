@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjja2t3tvbpf6"]
+
+[ext_resource type="Script" uid="uid://bmvrx26l1jd8" path="res://Scripts/job_button.gd" id="1_u82bb"]
+
+[node name="Button" type="Button" node_paths=PackedStringArray("job")]
+text = "This is a job for your voyage"
+script = ExtResource("1_u82bb")
+job = NodePath("")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
