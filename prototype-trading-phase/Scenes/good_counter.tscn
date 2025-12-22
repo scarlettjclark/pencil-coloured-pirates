@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://1w5ii35frj82"]
+
+[ext_resource type="Script" uid="uid://c8kc33mwgl4k3" path="res://Scripts/good_counter.gd" id="1_tminl"]
+
+[sub_resource type="SystemFont" id="SystemFont_i6l0e"]
+font_names = PackedStringArray("Monospace")
+
+[sub_resource type="SystemFont" id="SystemFont_tminl"]
+font_names = PackedStringArray("Monospace")
+
+[node name="GoodCounter" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_tminl")
+
+[node name="GoodLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_i6l0e")
+text = "X"
+
+[node name="GoodValue" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_tminl")
+text = "x"
