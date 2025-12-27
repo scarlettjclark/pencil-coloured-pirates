@@ -1,46 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwrumuw54jww7"]
+[gd_scene load_steps=6 format=3 uid="uid://bwrumuw54jww7"]
 
-[ext_resource type="Script" uid="uid://rcuas12jqqyx" path="res://Scenes/trade.gd" id="1_fkhew"]
-[ext_resource type="Script" uid="uid://cy3xt5ygp7lhq" path="res://Scenes/goods_counters.gd" id="1_r1qp1"]
+[ext_resource type="PackedScene" uid="uid://dswfestiuvokn" path="res://Scenes/trade.tscn" id="1_fkhew"]
+[ext_resource type="Script" uid="uid://d2u7x3ah4yfet" path="res://Scripts/trade_phase_ui.gd" id="1_kytco"]
+[ext_resource type="Script" uid="uid://cy3xt5ygp7lhq" path="res://Scripts/goods_counters.gd" id="1_r1qp1"]
 [ext_resource type="PackedScene" uid="uid://1w5ii35frj82" path="res://Scenes/good_counter.tscn" id="2_westi"]
 [ext_resource type="Script" uid="uid://d0l3wr4fara0u" path="res://Scripts/goods.gd" id="4_kytco"]
 
-[node name="Trade Phase UI" type="Control"]
+[node name="TradePhaseUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kytco")
 
-[node name="Trade" type="VBoxContainer" parent="."]
+[node name="Trade" parent="." node_paths=PackedStringArray("cost", "result") instance=ExtResource("1_fkhew")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-offset_right = 40.0
-offset_bottom = 40.0
-alignment = 1
-script = ExtResource("1_fkhew")
+cost = NodePath("Cost")
+result = NodePath("Result")
 
-[node name="Label" type="Label" parent="Trade"]
-layout_mode = 2
-text = "Trade?"
-horizontal_alignment = 1
+[node name="Cost" type="Node" parent="Trade"]
+script = ExtResource("4_kytco")
+crew = 3
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
 
-[node name="ReplyButtons" type="HBoxContainer" parent="Trade"]
-layout_mode = 2
-alignment = 1
-
-[node name="YesButton" type="Button" parent="Trade/ReplyButtons"]
-layout_mode = 2
-text = "Yes"
-
-[node name="NoButton" type="Button" parent="Trade/ReplyButtons"]
-layout_mode = 2
-text = " No"
+[node name="Result" type="Node" parent="Trade"]
+script = ExtResource("4_kytco")
+booze = 2
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
 
 [node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crew_counter", "munitions_counter", "supplies_counter", "booze_counter", "cloth_counter", "spices_counter", "gold_counter", "notoriety_counter", "store")]
 layout_mode = 1
@@ -97,3 +85,6 @@ cloth = 4
 spices = 3
 gold = 2
 notoriety = 1
+
+[connection signal="next_trade" from="Trade" to="." method="_on_next_trade"]
+[connection signal="trade_accepted" from="Trade" to="." method="_on_trade_accepted"]
