@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwrumuw54jww7"]
+[gd_scene load_steps=5 format=3 uid="uid://bwrumuw54jww7"]
 
+[ext_resource type="Script" uid="uid://rcuas12jqqyx" path="res://Scenes/trade.gd" id="1_fkhew"]
 [ext_resource type="Script" uid="uid://cy3xt5ygp7lhq" path="res://Scenes/goods_counters.gd" id="1_r1qp1"]
 [ext_resource type="PackedScene" uid="uid://1w5ii35frj82" path="res://Scenes/good_counter.tscn" id="2_westi"]
+[ext_resource type="Script" uid="uid://d0l3wr4fara0u" path="res://Scripts/goods.gd" id="4_kytco"]
 
 [node name="Trade Phase UI" type="Control"]
 layout_mode = 3
@@ -21,6 +23,7 @@ anchor_bottom = 0.9
 offset_right = 40.0
 offset_bottom = 40.0
 alignment = 1
+script = ExtResource("1_fkhew")
 
 [node name="Label" type="Label" parent="Trade"]
 layout_mode = 2
@@ -39,7 +42,7 @@ text = "Yes"
 layout_mode = 2
 text = " No"
 
-[node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crew_counter", "munitions_counter", "supplies_counter", "booze_counter", "cloth_counter", "spices_counter", "gold_counter", "notoriety_counter")]
+[node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crew_counter", "munitions_counter", "supplies_counter", "booze_counter", "cloth_counter", "spices_counter", "gold_counter", "notoriety_counter", "store")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -58,6 +61,7 @@ cloth_counter = NodePath("ClothCounter")
 spices_counter = NodePath("SpicesCounter")
 gold_counter = NodePath("GoldCounter")
 notoriety_counter = NodePath("NotorietyCounter")
+store = NodePath("Store")
 
 [node name="CrewCounter" parent="GoodsCounters" instance=ExtResource("2_westi")]
 layout_mode = 2
@@ -82,3 +86,14 @@ layout_mode = 2
 
 [node name="NotorietyCounter" parent="GoodsCounters" instance=ExtResource("2_westi")]
 layout_mode = 2
+
+[node name="Store" type="Node" parent="GoodsCounters"]
+script = ExtResource("4_kytco")
+crew = 8
+munitions = 7
+supplies = 6
+booze = 5
+cloth = 4
+spices = 3
+gold = 2
+notoriety = 1
