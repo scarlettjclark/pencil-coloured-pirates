@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwrumuw54jww7"]
+[gd_scene load_steps=7 format=3 uid="uid://bwrumuw54jww7"]
 
 [ext_resource type="PackedScene" uid="uid://dswfestiuvokn" path="res://Scenes/trade.tscn" id="1_fkhew"]
 [ext_resource type="Script" uid="uid://d2u7x3ah4yfet" path="res://Scripts/trade_phase_ui.gd" id="1_kytco"]
 [ext_resource type="Script" uid="uid://cy3xt5ygp7lhq" path="res://Scripts/goods_counters.gd" id="1_r1qp1"]
 [ext_resource type="PackedScene" uid="uid://1w5ii35frj82" path="res://Scenes/good_counter.tscn" id="2_westi"]
 [ext_resource type="Script" uid="uid://d0l3wr4fara0u" path="res://Scripts/goods.gd" id="4_kytco"]
+[ext_resource type="Script" uid="uid://b5pu13wpn8w2b" path="res://Scripts/trades_manager.gd" id="5_80cy2"]
 
-[node name="TradePhaseUI" type="Control"]
+[node name="TradePhaseUI" type="Control" node_paths=PackedStringArray("goods_counters")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,21 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kytco")
-
-[node name="Trade" parent="." node_paths=PackedStringArray("cost", "result") instance=ExtResource("1_fkhew")]
-layout_mode = 1
-cost = NodePath("Cost")
-result = NodePath("Result")
-
-[node name="Cost" type="Node" parent="Trade"]
-script = ExtResource("4_kytco")
-crew = 3
-metadata/_custom_type_script = "uid://d0l3wr4fara0u"
-
-[node name="Result" type="Node" parent="Trade"]
-script = ExtResource("4_kytco")
-booze = 2
-metadata/_custom_type_script = "uid://d0l3wr4fara0u"
+goods_counters = NodePath("GoodsCounters")
 
 [node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crew_counter", "munitions_counter", "supplies_counter", "booze_counter", "cloth_counter", "spices_counter", "gold_counter", "notoriety_counter", "store")]
 layout_mode = 1
@@ -86,5 +73,55 @@ spices = 3
 gold = 2
 notoriety = 1
 
-[connection signal="next_trade" from="Trade" to="." method="_on_next_trade"]
-[connection signal="trade_accepted" from="Trade" to="." method="_on_trade_accepted"]
+[node name="TradesManager" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_80cy2")
+
+[node name="Trade" parent="TradesManager" node_paths=PackedStringArray("cost", "result") instance=ExtResource("1_fkhew")]
+layout_mode = 1
+anchor_top = 0.4
+anchor_bottom = 0.6
+offset_right = 74.0
+offset_bottom = 58.0
+cost = NodePath("Cost")
+result = NodePath("Result")
+
+[node name="Cost" type="Node" parent="TradesManager/Trade"]
+script = ExtResource("4_kytco")
+crew = 3
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
+
+[node name="Result" type="Node" parent="TradesManager/Trade"]
+script = ExtResource("4_kytco")
+booze = 2
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
+
+[node name="Trade2" parent="TradesManager" node_paths=PackedStringArray("cost", "result") instance=ExtResource("1_fkhew")]
+visible = false
+layout_mode = 1
+anchor_top = 0.4
+anchor_bottom = 0.6
+offset_right = 74.0
+offset_bottom = 58.0
+cost = NodePath("Cost")
+result = NodePath("Result")
+
+[node name="Cost" type="Node" parent="TradesManager/Trade2"]
+script = ExtResource("4_kytco")
+munitions = 3
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
+
+[node name="Result" type="Node" parent="TradesManager/Trade2"]
+script = ExtResource("4_kytco")
+notoriety = 5
+metadata/_custom_type_script = "uid://d0l3wr4fara0u"
+
+[connection signal="next_trade" from="TradesManager/Trade" to="TradesManager" method="_on_next_trade"]
+[connection signal="trade_accepted" from="TradesManager/Trade" to="." method="_on_trade_accepted"]
+[connection signal="next_trade" from="TradesManager/Trade2" to="TradesManager" method="_on_next_trade"]
+[connection signal="trade_accepted" from="TradesManager/Trade2" to="." method="_on_trade_accepted"]
