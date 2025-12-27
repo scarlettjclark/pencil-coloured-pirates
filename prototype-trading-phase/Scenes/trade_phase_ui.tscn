@@ -39,7 +39,7 @@ text = "Yes"
 layout_mode = 2
 text = " No"
 
-[node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crewCounter", "munitionsCounter", "suppliesCounter", "boozeCounter", "clothCounter", "spicesCounter", "goldCounter", "notorietyCounter")]
+[node name="GoodsCounters" type="VBoxContainer" parent="." node_paths=PackedStringArray("crew_counter", "munitions_counter", "supplies_counter", "booze_counter", "cloth_counter", "spices_counter", "gold_counter", "notoriety_counter")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -50,14 +50,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 alignment = 1
 script = ExtResource("1_r1qp1")
-crewCounter = NodePath("CrewCounter")
-munitionsCounter = NodePath("MunitionsCounter")
-suppliesCounter = NodePath("SuppliesCounter")
-boozeCounter = NodePath("BoozeCounter")
-clothCounter = NodePath("ClothCounter")
-spicesCounter = NodePath("SpicesCounter")
-goldCounter = NodePath("GoldCounter")
-notorietyCounter = NodePath("NotorietyCounter")
+crew_counter = NodePath("CrewCounter")
+munitions_counter = NodePath("MunitionsCounter")
+supplies_counter = NodePath("SuppliesCounter")
+booze_counter = NodePath("BoozeCounter")
+cloth_counter = NodePath("ClothCounter")
+spices_counter = NodePath("SpicesCounter")
+gold_counter = NodePath("GoldCounter")
+notoriety_counter = NodePath("NotorietyCounter")
 
 [node name="CrewCounter" parent="GoodsCounters" instance=ExtResource("2_westi")]
 layout_mode = 2
