@@ -9,7 +9,7 @@ extends VBoxContainer
 @export var spices_counter : GoodCounter
 @export var gold_counter : GoodCounter
 @export var notoriety_counter : GoodCounter
-@onready var store : GoodsResource = load("res://Resources/test_store.tres")
+@export var store : GoodsResource
 
 func _ready():
 	set_label_initials()

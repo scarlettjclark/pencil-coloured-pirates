@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TradeResource" load_steps=5 format=3 uid="uid://b5h07jbq6cbot"]
+
+[ext_resource type="Script" uid="uid://r6diy8xs40yp" path="res://Scripts/goods_resource.gd" id="1_ulol6"]
+[ext_resource type="Script" uid="uid://ci1xg44mfi2b6" path="res://trade_resource.gd" id="1_usbte"]
+
+[sub_resource type="Resource" id="Resource_8awor"]
+script = ExtResource("1_ulol6")
+crew = 3
+metadata/_custom_type_script = "uid://r6diy8xs40yp"
+
+[sub_resource type="Resource" id="Resource_wlsp5"]
+script = ExtResource("1_ulol6")
+cloth = 3
+metadata/_custom_type_script = "uid://r6diy8xs40yp"
+
+[resource]
+script = ExtResource("1_usbte")
+cost = SubResource("Resource_8awor")
+result = SubResource("Resource_wlsp5")
+metadata/_custom_type_script = "uid://ci1xg44mfi2b6"

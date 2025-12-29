@@ -1,10 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwrumuw54jww7"]
+[gd_scene load_steps=9 format=3 uid="uid://bwrumuw54jww7"]
 
 [ext_resource type="PackedScene" uid="uid://dswfestiuvokn" path="res://Scenes/trade.tscn" id="1_fkhew"]
 [ext_resource type="Script" uid="uid://d2u7x3ah4yfet" path="res://Scripts/trade_phase_ui.gd" id="1_kytco"]
 [ext_resource type="Script" uid="uid://cy3xt5ygp7lhq" path="res://Scripts/goods_counters.gd" id="1_r1qp1"]
 [ext_resource type="PackedScene" uid="uid://1w5ii35frj82" path="res://Scenes/good_counter.tscn" id="2_westi"]
 [ext_resource type="Script" uid="uid://b5pu13wpn8w2b" path="res://Scripts/trades_manager.gd" id="5_80cy2"]
+[ext_resource type="Script" uid="uid://r6diy8xs40yp" path="res://Scripts/goods_resource.gd" id="6_80cy2"]
+[ext_resource type="Resource" uid="uid://b5h07jbq6cbot" path="res://Resources/test_trade_1.tres" id="7_x1kqt"]
+
+[sub_resource type="Resource" id="Resource_80cy2"]
+script = ExtResource("6_80cy2")
+crew = 3
+munitions = 3
+supplies = 3
+booze = 3
+cloth = 3
+spices = 3
+gold = 3
+notoriety = 3
+metadata/_custom_type_script = "uid://r6diy8xs40yp"
 
 [node name="TradePhaseUI" type="Control" node_paths=PackedStringArray("goods_counters")]
 layout_mode = 3
@@ -35,6 +49,7 @@ cloth_counter = NodePath("ClothCounter")
 spices_counter = NodePath("SpicesCounter")
 gold_counter = NodePath("GoldCounter")
 notoriety_counter = NodePath("NotorietyCounter")
+store = SubResource("Resource_80cy2")
 
 [node name="CrewCounter" parent="GoodsCounters" instance=ExtResource("2_westi")]
 layout_mode = 2
@@ -75,6 +90,7 @@ anchor_top = 0.4
 anchor_bottom = 0.6
 offset_right = 74.0
 offset_bottom = 58.0
+trade_resource = ExtResource("7_x1kqt")
 
 [connection signal="next_trade" from="TradesManager/Trade" to="TradesManager" method="_on_next_trade"]
 [connection signal="trade_accepted" from="TradesManager/Trade" to="." method="_on_trade_accepted"]

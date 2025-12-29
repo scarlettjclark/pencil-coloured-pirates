@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="TradeResource" load_steps=5 format=3 uid="uid://dn5qb78x7s3em"]
+
+[ext_resource type="Script" uid="uid://r6diy8xs40yp" path="res://Scripts/goods_resource.gd" id="1_me2j8"]
+[ext_resource type="Script" uid="uid://ci1xg44mfi2b6" path="res://trade_resource.gd" id="2_f2s5i"]
+
+[sub_resource type="Resource" id="Resource_me2j8"]
+script = ExtResource("1_me2j8")
+munitions = 3
+metadata/_custom_type_script = "uid://r6diy8xs40yp"
+
+[sub_resource type="Resource" id="Resource_f2s5i"]
+script = ExtResource("1_me2j8")
+spices = 3
+metadata/_custom_type_script = "uid://r6diy8xs40yp"
+
+[resource]
+script = ExtResource("2_f2s5i")
+cost = SubResource("Resource_me2j8")
+result = SubResource("Resource_f2s5i")
+metadata/_custom_type_script = "uid://ci1xg44mfi2b6"

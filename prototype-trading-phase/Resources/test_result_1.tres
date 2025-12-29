@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="GoodsResource" load_steps=2 format=3 uid="uid://drkxnwpi6he4e"]
-
-[ext_resource type="Script" uid="uid://r6diy8xs40yp" path="res://Scripts/goods_resource.gd" id="1_e4fvn"]
-
-[resource]
-script = ExtResource("1_e4fvn")
-cloth = 3
