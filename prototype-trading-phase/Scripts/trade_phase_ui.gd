@@ -2,14 +2,14 @@ class_name TradePhaseUI
 
 extends Control
 
-var store : Goods
+var store : GoodsResource
 @export var goods_counters : GoodsCounters
 
 
 func _ready():
 	store = goods_counters.store
 
-func _on_trade_accepted(cost : Goods, result : Goods) -> void:
+func _on_trade_accepted(cost : GoodsResource, result : GoodsResource) -> void:
 	print("Trade accepted!" + cost.to_shorthand_label() + "->" + result.to_shorthand_label())
 	if (store.has_cost(cost)):
 		store.spend(cost)

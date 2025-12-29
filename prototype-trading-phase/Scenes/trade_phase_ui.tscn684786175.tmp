@@ -76,5 +76,17 @@ anchor_bottom = 0.6
 offset_right = 74.0
 offset_bottom = 58.0
 
+[node name="Trade2" parent="TradesManager" instance=ExtResource("1_fkhew")]
+visible = false
+layout_mode = 1
+anchor_top = 0.4
+anchor_bottom = 0.6
+offset_right = 74.0
+offset_bottom = 58.0
+result = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","script":Resource("res://Scripts/goods.gd"),"crew":0,"munitions":0,"supplies":0,"booze":0,"cloth":0,"spices":0,"gold":0,"notoriety":5,"metadata/_custom_type_script":"uid://d0l3wr4fara0u")
+
+
 [connection signal="next_trade" from="TradesManager/Trade" to="TradesManager" method="_on_next_trade"]
 [connection signal="trade_accepted" from="TradesManager/Trade" to="." method="_on_trade_accepted"]
+[connection signal="next_trade" from="TradesManager/Trade2" to="TradesManager" method="_on_next_trade"]
+[connection signal="trade_accepted" from="TradesManager/Trade2" to="." method="_on_trade_accepted"]
