@@ -10,8 +10,6 @@ extends VBoxContainer
 signal trade_accepted(cost : GoodsResource, result : GoodsResource)
 signal next_trade()
 
-func _ready():
-	trade_descriptor.text = trade_resource.cost.to_shorthand_label() + " -> " + trade_resource.result.to_shorthand_label()
 
 func _on_yes_button_pressed():
 	trade_accepted.emit(trade_resource.cost, trade_resource.result)
@@ -19,3 +17,6 @@ func _on_yes_button_pressed():
 
 func _on_no_button_pressed():
 	next_trade.emit()
+
+func display():
+	trade_descriptor.text = trade_resource.cost.to_shorthand_label() + " -> " + trade_resource.result.to_shorthand_label()
