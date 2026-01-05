@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkwn4yhpgp1q7"]
 
 [ext_resource type="Script" uid="uid://cv0fh0au4n4ms" path="res://game_manager.gd" id="1_70yv6"]
-[ext_resource type="Script" uid="uid://cx0q8tj4k24vs" path="res://trade_button.gd" id="2_o2178"]
 [ext_resource type="Script" uid="uid://dxv6sp5ysy45g" path="res://store_label.gd" id="2_smx3j"]
+[ext_resource type="Script" uid="uid://crxts6pfffdef" path="res://job.gd" id="3_o2178"]
 
 [node name="Game Manager" type="Control"]
 layout_mode = 3
@@ -21,22 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="Voyage Phase UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -15.5
-offset_right = 83.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "3 Crew -> 2 Treasure"
-script = ExtResource("2_o2178")
-
 [node name="StoreLabel" type="Label" parent="Voyage Phase UI"]
 layout_mode = 1
 anchors_preset = 7
@@ -51,4 +35,50 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("2_smx3j")
 
-[connection signal="trade_made" from="Voyage Phase UI/Button" to="." method="exchange"]
+[node name="BoxContainer" type="GridContainer" parent="Voyage Phase UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.66
+offset_right = 40.0
+offset_bottom = 39.99997
+columns = 2
+
+[node name="Job1" type="Button" parent="Voyage Phase UI/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 Rations -> 2 Treasure"
+script = ExtResource("3_o2178")
+cost = Dictionary[String, int]({
+"Rations": 1
+})
+result = Dictionary[String, int]({
+"Treasure": 2
+})
+
+[node name="Job2" type="Button" parent="Voyage Phase UI/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2 Munitions -> 3 Treasure"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RunJobs" type="Button" parent="MarginContainer"]
+layout_mode = 2
+text = "Run Jobs"
+
+[connection signal="job_running_request" from="Voyage Phase UI/BoxContainer/Job1" to="." method="_on_job_running_request"]

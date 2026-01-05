@@ -1,6 +1,6 @@
 extends Control
 
-var goods_store : Dictionary[String, int] = {"Crew" : 3}
+var goods_store : Dictionary[String, int] = {"Rations" : 3}
 
 @onready var store_label : StoreLabel = $"Voyage Phase UI/StoreLabel"
 
@@ -45,3 +45,7 @@ func good_cost_in_store(cost_good : String, cost_value : int) -> bool:
 	else:
 		print(cost_good + " not in store")
 	return false
+
+func _on_job_running_request(cost, _result, job_running_method):
+	if exchange_costs_can_be_paid(cost):
+		job_running_method.call()
