@@ -51,4 +51,4 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("2_smx3j")
 
-[connection signal="trade_made" from="Voyage Phase UI/Button" to="." method="_on_button_trade_made"]
+[connection signal="trade_made" from="Voyage Phase UI/Button" to="." method="exchange"]

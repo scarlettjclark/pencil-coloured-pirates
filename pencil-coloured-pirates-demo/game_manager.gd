@@ -10,19 +10,27 @@ func _ready():
 func display():
 	store_label.display_store(goods_store)
 
-func _on_button_trade_made(cost, result) -> void:
+func exchange(cost : Dictionary[String, int], result : Dictionary[String, int]):
 	if exchange_costs_can_be_paid(cost):
-		for good in cost.keys():
-			if good in goods_store.keys():
-				goods_store[good] -= cost[good]
-		for good in result.keys():
-			if good in goods_store.keys():
-				goods_store[good] += result[good]
-			else:
-				goods_store[good] = result[good]
+		spend(cost)
+		add(result)
 		display()
 	else:
 		print("Couldn't pay costs.\nCost: " + str(cost) + "\nStore: " + str(goods_store))
+
+func spend(cost: Dictionary[String, int]) -> void:
+	for good in cost.keys():
+		if good in goods_store.keys():
+			goods_store[good] -= cost[good]
+		else:
+			push_error("Tried spending " + str(cost) + " with only " + str(store_label) + " in the store.")
+
+func add(result: Dictionary[String, int]) -> void:
+	for good in result.keys():
+		if good in goods_store.keys():
+			goods_store[good] += result[good]
+		else:
+			goods_store[good] = result[good]
 
 func exchange_costs_can_be_paid(cost : Dictionary[String, int]) -> bool:
 	var check_each_good = func(good_string): return good_cost_in_store(good_string, cost[good_string])
